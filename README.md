@@ -44,3 +44,5 @@ vercel --prod
 ---
 
 Made for anyone who's ever gotten a haircut to the sound of a scratchy 90s cassette playing in the background.
+
+Built and maintained by [ParthKhanna07](https://github.com/ParthKhanna07).
