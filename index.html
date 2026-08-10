@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>बिल्लू बार्बर</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <img class="bg bg-blur" id="bgImageBlur" src="assets/salon-bg.png" alt="" aria-hidden="true">
+  <img class="bg" id="bgImage" src="assets/salon-bg.png" alt="">
+
+  <div class="bg-overlay"></div>
+
+  <div class="clock">
+    <span id="clockH"></span><span class="colon">:</span><span id="clockM"></span>
+    <span id="clockAmPm"></span>
+  </div>
+
+  <div class="scene-toggle">
+    <button class="scene-btn active" id="sceneSalon" data-scene="salon">🪒 Salon</button>
+    <button class="scene-btn" id="sceneBus" data-scene="bus">🚌 Bus</button>
+  </div>
+
+  <header class="topbar">
+    <a class="ytmusic-link" id="ytmusicLink" href="https://music.youtube.com/playlist?list=PLTJ1PnzCWyFw" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.5 10.5-6.75 4.15V8.35L16.5 12.5z"/></svg>
+      <span>YT Music</span> ↗
+    </a>
+  </header>
+
+  <div id="player" class="player">
+    <div class="yt-thumb">
+      <div id="ytplayer"></div>
+      <img id="albumArt" class="yt-thumb-mask" alt="">
+    </div>
+    <div class="player-info">
+      <div class="track-title" id="trackTitle">Loading track…</div>
+      <div class="track-sub" id="trackChannel">&nbsp;</div>
+      <div class="progress" id="progress"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="time" id="time">0:00 / 0:00</div>
+    </div>
+    <div class="controls">
+      <button id="prevBtn" title="Previous">⏮</button>
+      <button id="playBtn" title="Play">▶</button>
+      <button id="nextBtn" title="Next">⏭</button>
+    </div>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="app.js"></script>
+</body>
+</html>

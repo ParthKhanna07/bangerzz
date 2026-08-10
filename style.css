@@ -1,0 +1,407 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #111;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+button, a {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.bg-blur {
+  display: none;
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 28%, rgba(0,0,0,0.1) 65%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+}
+
+.yt-thumb {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #000;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
+}
+
+.yt-thumb iframe {
+  width: 178px;
+  height: 100px;
+  margin: -14px 0 0 -53px;
+  pointer-events: none;
+}
+
+.yt-thumb-mask {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #3a1512;
+  pointer-events: none;
+  animation: spin 6s linear infinite;
+  animation-play-state: paused;
+}
+
+.yt-thumb-mask.spinning {
+  animation-play-state: running;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.clock {
+  position: fixed;
+  top: 28px;
+  left: 32px;
+  z-index: 5;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.clock .colon {
+  animation: blink 1s steps(1) infinite;
+}
+
+.clock #clockAmPm {
+  margin-left: 4px;
+  opacity: 0.75;
+  font-size: 13px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.scene-toggle {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.scene-btn {
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.scene-btn:hover {
+  color: #fff;
+}
+
+.scene-btn.active {
+  background: #fff;
+  color: #222;
+}
+
+.topbar {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 5;
+}
+
+.ytmusic-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ytmusic-link:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.player {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(120deg, rgba(122, 32, 26, 0.45), rgba(58, 21, 18, 0.45));
+  backdrop-filter: blur(16px);
+  border-radius: 999px;
+  padding: 10px 24px 10px 10px;
+  width: 520px;
+  max-width: 92vw;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  transition: opacity 0.3s ease;
+}
+
+.player.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.player-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.track-title {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-sub {
+  font-size: 10px;
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.progress {
+  position: relative;
+  margin-top: 10px;
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.progress::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: 0;
+  right: 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #fff;
+}
+
+.time {
+  margin-top: 5px;
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.controls button {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 19px;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#playBtn {
+  background: #fff;
+  color: #222;
+  font-size: 17px;
+  width: 46px;
+  height: 46px;
+}
+
+.controls button:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+#playBtn:hover {
+  background: #eee;
+}
+
+@media (max-width: 640px) {
+  .bg {
+    object-fit: contain;
+    z-index: 1;
+  }
+
+  .bg-blur {
+    display: block;
+    object-fit: cover;
+    filter: blur(45px) brightness(0.55) saturate(1.3);
+    transform: scale(1.2);
+    z-index: 0;
+  }
+
+  .clock {
+    top: 14px;
+    left: 14px;
+    font-size: 12px;
+  }
+
+  .clock #clockAmPm {
+    font-size: 10px;
+  }
+
+  .scene-toggle {
+    top: 14px;
+    gap: 2px;
+    padding: 3px;
+  }
+
+  .scene-btn {
+    font-size: 10px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+
+  .topbar {
+    top: 14px;
+    right: 14px;
+  }
+
+  .ytmusic-link {
+    font-size: 12px;
+    padding: 5px 8px;
+    gap: 5px;
+  }
+
+  .ytmusic-link svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ytmusic-link span {
+    display: none;
+  }
+
+  .player {
+    bottom: 14px;
+    width: min(94vw, 360px);
+    padding: 7px 14px 7px 7px;
+    gap: 10px;
+  }
+
+  .yt-thumb {
+    width: 52px;
+    height: 52px;
+  }
+
+  .yt-thumb iframe {
+    width: 116px;
+    height: 65px;
+    margin: -9px 0 0 -32px;
+  }
+
+  .track-title {
+    font-size: 12px;
+  }
+
+  .track-sub {
+    font-size: 9px;
+  }
+
+  .time {
+    font-size: 9px;
+  }
+
+  .controls {
+    gap: 6px;
+  }
+
+  .controls button {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  #playBtn {
+    width: 38px;
+    height: 38px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .scene-btn {
+    font-size: 9px;
+    padding: 5px 8px;
+  }
+
+  .player {
+    width: min(96vw, 320px);
+    gap: 8px;
+  }
+
+  .yt-thumb {
+    width: 44px;
+    height: 44px;
+  }
+
+  .yt-thumb iframe {
+    width: 98px;
+    height: 55px;
+    margin: -7px 0 0 -27px;
+  }
+}
