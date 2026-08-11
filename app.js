@@ -289,7 +289,6 @@ function switchScene(scene) {
   stallLastCur = -1;
 
   document.getElementById('bgImage').src = SCENES[scene].bg;
-  document.getElementById('bgImageBlur').src = SCENES[scene].bg;
   document.getElementById('ytmusicLink').href = SCENES[scene].playlistUrl;
   document.querySelectorAll('.scene-btn').forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.scene === scene);

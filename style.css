@@ -24,10 +24,6 @@ button, a {
   z-index: 0;
 }
 
-.bg-blur {
-  display: none;
-}
-
 .bg-overlay {
   position: fixed;
   inset: 0;
@@ -281,19 +277,6 @@ button, a {
 }
 
 @media (max-width: 640px) {
-  .bg {
-    object-fit: contain;
-    z-index: 1;
-  }
-
-  .bg-blur {
-    display: block;
-    object-fit: cover;
-    filter: blur(45px) brightness(0.55) saturate(1.3);
-    transform: scale(1.2);
-    z-index: 0;
-  }
-
   .clock {
     top: 14px;
     left: 14px;
